@@ -68,7 +68,9 @@ module Liquid
         object.context = context if object.respond_to?(:context=)
       end
 
-      object
+      object.respond_to?(:to_raw_value) ?
+        object.to_raw_value :
+        object
     end
 
     def ==(other)
